@@ -1,6 +1,7 @@
 require ('dotenv').config()
 
 const express = require('express')
+const mongoose = require('mongoose')
 
 //attach routers
 const clientRouter = require('./routes/clients')
@@ -10,6 +11,7 @@ const app = express()
 
 
 //middleware
+app.use(express.json())
 
 //log requests
 app.use((req,res,next)=>{
@@ -18,13 +20,23 @@ app.use((req,res,next)=>{
     next()
 })
 
-// route handler
+// router
 
 app.use('/api/clients',clientRouter)
 
+//Connect to database
+mongoose.connect(process.env.MONGO_URL)
+.then(()=>{
 
-// listen for requests
+    // listen for requests
 app.listen(process.env.PORT, () => {
-    console.log('knoo listening on port 4000');
+    console.log('knoo listening on port',process.env.PORT); 
 })
+
+})
+.catch((error)=>{
+    console.log('we have a prob')
+    console.log(error)
+})
+
 

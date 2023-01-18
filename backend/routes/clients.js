@@ -5,6 +5,7 @@ const router = express.Router()
  
 //middleware
 
+
  //get all clients
 
  router.get('/', (req,res) => {
@@ -30,10 +31,10 @@ router.delete('/:id', (req,res) => {
    res.json({mssg: 'delete this client is??'})
 })
 //update client by mr#
-router.put('/:id', (req,res) => {
+router.patch('/:id', (req,res) => {
    console.log("woah this is nice")
    res.json({mssg: 'update this client is??'})
 })
 
-//export router
+//export router 
 module.exports = router
