@@ -1,5 +1,6 @@
 //express router
 const express = require('express')
+const Client = require('../models/client')
 
 const router = express.Router()
  
@@ -20,9 +21,14 @@ const router = express.Router()
 })
 
  //add new client
-router.post('/', (req,res) => {
-   console.log("so far so ood")
-   res.json({mss: 'post new clients'})
+router.post('/', async(req,res) => {
+   const {firstName,lastName,insuranceCompany,policyNum} = req.body
+   try {
+         const thisclient = await Client.create({firstName,lastName,insuranceCompany,policyNum})
+         res.status(200).json(thisclient)
+   } catch(error){
+       res.status(400).json({error: error.message})
+   }
 })
 
 //delete client by mr#
