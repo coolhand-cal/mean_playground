@@ -4,7 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 //attach routers
-const clientRouter = require('./routes/clients')
+const clientRouter = require('./routes/clientsRouter')
 
 // express app
 const app = express()
@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGO_URL)
 
     // listen for requests
 app.listen(process.env.PORT, () => {
-    console.log('knoo listening on port',process.env.PORT); 
+    console.log('now listening on port',process.env.PORT); 
 })
 
 })
