@@ -15,7 +15,6 @@ const router = express.Router()
  //get all clients
 
  router.get('/',getClients)
-
  
  //get client by mr #
  router.get('/:id',getClientById)
